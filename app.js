@@ -57,7 +57,8 @@
     filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeFilter = btn.dataset.filter;
-    applyFilters();
+    // Favorites filter is handled by prompts.js; skip normal filter logic
+    if (activeFilter !== 'favorites') applyFilters();
   });
 
 })();

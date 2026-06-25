@@ -495,6 +495,124 @@ a:hover { text-decoration: underline; }
 .compare-table td.no  { color: var(--text2); opacity: .6; }
 
 /* ════════════════════════════════════════
+   STAR / FAVORITES
+════════════════════════════════════════ */
+.star-btn {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 6px; width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; opacity: 0;
+  transition: opacity var(--trans), background var(--trans), border-color var(--trans), color var(--trans);
+  color: var(--text2); z-index: 2;
+}
+.card:hover .star-btn { opacity: 1; }
+.card.faved .star-btn {
+  opacity: 1;
+  background: rgba(227,179,65,.15);
+  border-color: rgba(227,179,65,.4);
+  color: var(--gold);
+}
+.card.faved .star-btn svg { fill: var(--gold); }
+
+.fav-filter-btn { display: flex; align-items: center; gap: 6px; }
+.fav-count {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; font-size: .7rem; font-weight: 700;
+  padding: 1px 6px; color: var(--text2);
+}
+.fav-filter-btn.active .fav-count { background: rgba(0,0,0,.2); border-color: transparent; color: #000; }
+.fav-filter-btn.has-favs .fav-count { background: rgba(227,179,65,.15); border-color: rgba(227,179,65,.3); color: var(--gold); }
+
+/* ════════════════════════════════════════
+   PROMPT TEMPLATES
+════════════════════════════════════════ */
+.prompts-section { margin-top: 72px; }
+.prompts-header { margin-bottom: 24px; }
+.prompts-header h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; }
+.prompts-sub { font-size: .9rem; color: var(--text2); }
+
+/* Tabs */
+.prompt-tabs {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;
+  border-bottom: 1px solid var(--border); padding-bottom: 12px;
+}
+.ptab {
+  background: transparent; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text2);
+  cursor: pointer; font-size: .85rem; font-weight: 500;
+  padding: 6px 14px; transition: all var(--trans);
+}
+.ptab:hover { border-color: var(--accent); color: var(--accent); }
+.ptab.active {
+  background: var(--bg3); border-color: var(--accent);
+  color: var(--text); font-weight: 700;
+}
+
+/* Prompt grid */
+.prompt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+/* Prompt card */
+.prompt-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: border-color var(--trans);
+}
+.prompt-card:hover { border-color: rgba(88,166,255,.3); }
+
+.prompt-card-top {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 12px;
+}
+.prompt-card-title { font-size: .95rem; font-weight: 700; margin-bottom: 3px; }
+.prompt-card-desc  { font-size: .8rem; color: var(--text2); line-height: 1.4; }
+
+/* Copy button */
+.copy-btn {
+  flex-shrink: 0;
+  display: flex; align-items: center; gap: 5px;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--text2);
+  cursor: pointer; font-size: .78rem; font-weight: 600;
+  padding: 5px 10px; transition: all var(--trans); white-space: nowrap;
+}
+.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+.copy-btn.copied {
+  background: rgba(63,185,80,.12);
+  border-color: rgba(63,185,80,.3); color: var(--accent2);
+}
+
+/* Best for tags */
+.prompt-best-for {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 6px; font-size: .76rem; color: var(--text2);
+}
+.best-tag {
+  background: rgba(88,166,255,.1); color: var(--accent);
+  border: 1px solid rgba(88,166,255,.2);
+  border-radius: 10px; padding: 2px 8px; font-weight: 600;
+}
+
+/* Prompt preview */
+.prompt-preview {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 12px 14px;
+  max-height: 160px; overflow-y: auto;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.prompt-preview code {
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
+  font-size: .76rem; color: var(--text2); white-space: pre-wrap; word-break: break-word;
+}
+.prompt-preview::-webkit-scrollbar { width: 4px; }
+.prompt-preview::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ════════════════════════════════════════
    FOOTER
 ════════════════════════════════════════ */
 .site-footer {

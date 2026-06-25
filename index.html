@@ -117,6 +117,7 @@
         <button class="filter-btn" data-filter="review">Revisión</button>
         <button class="filter-btn" data-filter="agent">Agentes</button>
         <button class="filter-btn" data-filter="learn">Aprendizaje</button>
+        <button class="filter-btn fav-filter-btn" data-filter="favorites" id="favFilterBtn">⭐ Favoritos <span class="fav-count" id="favCount">0</span></button>
       </div>
     </div>
   </div>
@@ -389,6 +390,29 @@
 
   </main>
 
+  <!-- ══════════════ PROMPT TEMPLATES ══════════════ -->
+  <section class="prompts-section container">
+    <div class="prompts-header">
+      <h2>Plantillas de Prompts</h2>
+      <p class="prompts-sub">Prompts listos para copiar y usar con cualquier IA. Selecciona la tarea y copia el prompt con un clic.</p>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="prompt-tabs" id="promptTabs">
+      <button class="ptab active" data-tab="debug">🐛 Debug</button>
+      <button class="ptab" data-tab="explain">💡 Explicar</button>
+      <button class="ptab" data-tab="generate">⚡ Generar</button>
+      <button class="ptab" data-tab="refactor">🔄 Refactorizar</button>
+      <button class="ptab" data-tab="test">✅ Tests</button>
+      <button class="ptab" data-tab="security">🔐 Seguridad</button>
+    </div>
+
+    <!-- Prompt cards -->
+    <div class="prompt-grid" id="promptGrid">
+      <!-- Filled by prompts.js -->
+    </div>
+  </section>
+
   <!-- COMPARISON TABLE -->
   <section class="compare-section container">
     <h2>Tabla comparativa rápida</h2>
@@ -420,6 +444,7 @@
   </footer>
 
   <script src="recommender.js"></script>
+  <script src="prompts.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
