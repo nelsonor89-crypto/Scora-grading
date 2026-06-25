@@ -95,4 +95,54 @@
     observer.observe(compareBar, { attributes: true, attributeFilter: ['class'] });
   }
 
+  // Language map: display text → data-lang value in filter bar
+  const langMap = {
+    'python': 'python', 'py': 'python',
+    'javascript': 'javascript', 'js': 'javascript',
+    'typescript': 'typescript', 'ts': 'typescript',
+    'java': 'java',
+    'go': 'go',
+    'rust': 'rust',
+    'sql': 'sql',
+    'bash': 'bash', 'shell': 'bash',
+    'node': 'javascript', 'node.js': 'javascript',
+    'rest': 'all', 'restapi': 'all',
+    'dart': 'all', 'flutter': 'all',
+    'c++': 'all', 'c': 'all', 'ruby': 'all',
+    'html': 'javascript', 'css': 'javascript',
+  };
+
+  function setLangFilter(langSlug) {
+    if (!langFilter) return;
+    const match = langFilter.querySelector(`.lang-btn[data-lang="${langSlug}"]`);
+    const target = match || langFilter.querySelector('.lang-btn[data-lang="all"]');
+    if (!target) return;
+    langFilter.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    target.classList.add('active');
+    activeLang = target.dataset.lang;
+    applyFilters();
+  }
+
+  // Convert ".langs" text to clickable pill buttons
+  document.querySelectorAll('.card .langs').forEach(el => {
+    const raw = el.textContent;
+    const parts = raw.split('·').map(s => s.trim()).filter(Boolean);
+    el.innerHTML = parts.map(label => {
+      const slug = label.toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
+      return `<button class="lang-tag" data-lang-label="${slug}">${label}</button>`;
+    }).join('');
+  });
+
+  // Lang-tag click: apply language filter + scroll to directory
+  document.addEventListener('click', e => {
+    const tag = e.target.closest('.lang-tag');
+    if (!tag) return;
+    e.preventDefault();
+    const label = tag.dataset.langLabel || '';
+    const filterSlug = langMap[label] || 'all';
+    setLangFilter(filterSlug);
+    const dir = document.getElementById('directorio');
+    if (dir) dir.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
 })();
