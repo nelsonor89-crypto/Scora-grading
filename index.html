@@ -5,31 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CodeAI Hub — IAs gratuitas para programar</title>
   <meta name="description" content="Describe tu proyecto y detectamos automáticamente las mejores IAs gratuitas para desarrollarlo. Directorio curado de 18 herramientas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+  <!-- ══════════════ NAV ══════════════ -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#">
+        <span class="nav-logo-icon">⚡</span>
+        <span class="nav-logo-text">CodeAI<strong>Hub</strong></span>
+      </a>
+      <div class="nav-links">
+        <a href="#rec-section">Recomendar</a>
+        <a href="#directorio">Directorio</a>
+        <a href="#prompts-section">Prompts</a>
+      </div>
+      <a href="#rec-section" class="nav-cta">Analizar mi proyecto →</a>
+    </div>
+  </nav>
+
   <!-- ══════════════ HERO ══════════════ -->
-  <header class="hero">
+  <header class="hero" id="inicio">
+    <!-- Animated orbs -->
+    <div class="hero-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <!-- Grid overlay -->
+    <div class="hero-grid" aria-hidden="true"></div>
+
     <div class="hero-inner">
-      <div class="hero-badge">100% Gratuito · Sin afiliaciones</div>
-      <h1>Las mejores IAs para programar</h1>
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        100% Gratuito · Sin afiliaciones
+      </div>
+      <h1>Las mejores IAs para<br><span class="h1-gradient">programar código</span></h1>
       <p class="hero-sub">
-        Describe tu proyecto y nuestra IA detecta <strong>qué herramientas y combinación</strong>
-        se adaptan mejor a tu idea — todo gratis.
+        Describe tu proyecto y detectamos <strong>qué combinación de IAs gratuitas</strong>
+        se adapta mejor a tu idea — en segundos.
       </p>
       <div class="hero-stats">
-        <span class="stat"><strong>18</strong> herramientas</span>
-        <span class="stat-sep">·</span>
-        <span class="stat"><strong>6</strong> categorías</span>
-        <span class="stat-sep">·</span>
-        <span class="stat">Actualizado <strong>Jun 2026</strong></span>
+        <div class="stat-pill"><span class="stat-num">18</span> herramientas</div>
+        <div class="stat-pill"><span class="stat-num">6</span> categorías</div>
+        <div class="stat-pill"><span class="stat-num">29</span> prompts listos</div>
+        <div class="stat-pill">Jun <span class="stat-num">2026</span></div>
+      </div>
+      <div class="hero-actions">
+        <a href="#rec-section" class="btn-hero-primary">Analizar mi proyecto →</a>
+        <a href="#directorio" class="btn-hero-secondary">Ver directorio</a>
       </div>
     </div>
   </header>
 
   <!-- ══════════════ RECOMMENDER ══════════════ -->
-  <section class="rec-section">
+  <section class="rec-section" id="rec-section">
     <div class="rec-box">
 
       <div class="rec-header">
@@ -100,7 +134,7 @@
   </section>
 
   <!-- ══════════════ FILTER / SEARCH ══════════════ -->
-  <div class="dir-header container">
+  <div class="dir-header container" id="directorio">
     <h2 class="dir-title">Directorio completo</h2>
     <div class="dir-controls">
       <div class="search-wrap">
@@ -391,7 +425,7 @@
   </main>
 
   <!-- ══════════════ PROMPT TEMPLATES ══════════════ -->
-  <section class="prompts-section container">
+  <section class="prompts-section container" id="prompts-section">
     <div class="prompts-header">
       <h2>Plantillas de Prompts</h2>
       <p class="prompts-sub">Prompts listos para copiar y usar con cualquier IA. Selecciona la tarea y copia el prompt con un clic.</p>
