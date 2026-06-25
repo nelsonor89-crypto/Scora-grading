@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeAI Hub — IAs gratuitas para programar</title>
+  <meta name="description" content="Describe tu proyecto y detectamos automáticamente las mejores IAs gratuitas para desarrollarlo. Directorio curado de 18 herramientas." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">100% Gratuito · Sin afiliaciones</div>
+      <h1>Las mejores IAs para programar</h1>
+      <p class="hero-sub">
+        Describe tu proyecto y nuestra IA detecta <strong>qué herramientas y combinación</strong>
+        se adaptan mejor a tu idea — todo gratis.
+      </p>
+      <div class="hero-stats">
+        <span class="stat"><strong>18</strong> herramientas</span>
+        <span class="stat-sep">·</span>
+        <span class="stat"><strong>6</strong> categorías</span>
+        <span class="stat-sep">·</span>
+        <span class="stat">Actualizado <strong>Jun 2026</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════ RECOMMENDER ══════════════ -->
+  <section class="rec-section">
+    <div class="rec-box">
+
+      <div class="rec-header">
+        <div class="rec-icon-wrap">🧠</div>
+        <div>
+          <h2>¿Qué quieres construir?</h2>
+          <p>Describe tu idea y encontramos la combinación perfecta de IAs gratuitas para desarrollarla</p>
+        </div>
+      </div>
+
+      <!-- Presets -->
+      <div class="presets-row" id="presetsRow">
+        <button class="preset-btn" data-preset="web">🌐 App Web</button>
+        <button class="preset-btn" data-preset="api">⚙️ API / Backend</button>
+        <button class="preset-btn" data-preset="data">📊 Data Science / ML</button>
+        <button class="preset-btn" data-preset="learn">📚 Aprender a programar</button>
+        <button class="preset-btn" data-preset="mobile">📱 App Móvil</button>
+        <button class="preset-btn" data-preset="automation">🤖 Automatización</button>
+        <button class="preset-btn" data-preset="security">🔐 Seguridad</button>
+        <button class="preset-btn" data-preset="local">🔒 Privacidad / Local</button>
+      </div>
+
+      <!-- Input -->
+      <div class="rec-input-wrap">
+        <textarea
+          id="ideaInput"
+          rows="3"
+          placeholder="Ej: Quiero crear una app web de e-commerce con React y Node.js, con autenticación, pagos y panel de administración…"
+        ></textarea>
+        <div class="rec-actions">
+          <span class="rec-hint" id="charCount">0 / 500 caracteres</span>
+          <button class="btn btn-analyze" id="analyzeBtn">
+            <span id="btnText">Analizar proyecto →</span>
+            <span id="btnLoading" class="hidden">
+              <span class="spinner"></span> Analizando…
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="recommResults" class="rec-results hidden">
+
+        <div class="rec-detected-row">
+          <span class="detected-label">Proyecto detectado:</span>
+          <span id="detectedType" class="detected-chip"></span>
+          <button class="reset-btn" id="resetBtn">✕ Nueva búsqueda</button>
+        </div>
+
+        <!-- Top 3 -->
+        <div class="rec-block">
+          <h3 class="rec-block-title">Herramientas recomendadas</h3>
+          <div class="rec-cards-row" id="recCards"></div>
+        </div>
+
+        <!-- Combo -->
+        <div class="rec-block combo-block">
+          <h3 class="rec-block-title">
+            Combo ideal para tu proyecto
+            <span class="combo-badge">Flujo completo</span>
+          </h3>
+          <div class="combo-flow" id="comboFlow"></div>
+          <p class="combo-why" id="comboWhy"></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FILTER / SEARCH ══════════════ -->
+  <div class="dir-header container">
+    <h2 class="dir-title">Directorio completo</h2>
+    <div class="dir-controls">
+      <div class="search-wrap">
+        <input id="searchInput" type="text" placeholder="Buscar herramienta o lenguaje…" autocomplete="off" />
+        <span class="search-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </span>
+      </div>
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all">Todas</button>
+        <button class="filter-btn" data-filter="chat">Chat IA</button>
+        <button class="filter-btn" data-filter="copilot">Copiloto IDE</button>
+        <button class="filter-btn" data-filter="autocomplete">API Gratuita</button>
+        <button class="filter-btn" data-filter="review">Revisión</button>
+        <button class="filter-btn" data-filter="agent">Agentes</button>
+        <button class="filter-btn" data-filter="learn">Aprendizaje</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ CARD GRID ══════════════ -->
+  <main class="container" id="cardGrid">
+
+    <!-- CHAT IA -->
+    <section class="category-section" data-category="chat">
+      <h2 class="category-title"><span class="cat-icon">💬</span> Chat IA <span class="cat-desc">Describe tu problema, pide código, recibe explicaciones</span></h2>
+      <div class="cards-row">
+
+        <article class="card top-pick" data-tags="python javascript typescript rust go sql refactor arquitectura contexto largo chat">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=claude.ai" alt="Claude" class="card-logo" />
+            <div><h3>Claude <span class="badge badge-top">Top Pick</span></h3><span class="provider">Anthropic</span></div>
+          </div>
+          <p>Contexto de 200 k tokens: ideal para refactorizar bases de código completas, explicar arquitecturas y revisar PRs grandes. Plan gratuito generoso.</p>
+          <ul class="feature-list"><li>Contexto de 200 k tokens</li><li>Subida de archivos y código</li><li>Razonamiento extendido</li></ul>
+          <div class="card-footer"><a href="https://claude.ai" target="_blank" rel="noopener" class="btn btn-primary">Abrir gratis →</a><span class="langs">Python · JS · TS · Rust · Go</span></div>
+        </article>
+
+        <article class="card top-pick" data-tags="python javascript java html css prototipo aprender explicar chat openai">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chatgpt.com" alt="ChatGPT" class="card-logo" />
+            <div><h3>ChatGPT <span class="badge badge-top">Top Pick</span></h3><span class="provider">OpenAI</span></div>
+          </div>
+          <p>GPT-4o disponible en el plan gratuito. Excelente para prototipar, generar tests, explicar conceptos y ejecutar código Python en el intérprete integrado.</p>
+          <ul class="feature-list"><li>GPT-4o gratis con límite diario</li><li>Intérprete de Python integrado</li><li>Memoria de proyectos</li></ul>
+          <div class="card-footer"><a href="https://chatgpt.com" target="_blank" rel="noopener" class="btn btn-primary">Abrir gratis →</a><span class="langs">Python · JS · Java · C++</span></div>
+        </article>
+
+        <article class="card" data-tags="algoritmo matemática optimizar eficiencia logica estructuras de datos machine learning ml chat deepseek">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chat.deepseek.com" alt="DeepSeek" class="card-logo" />
+            <div><h3>DeepSeek Chat</h3><span class="provider">DeepSeek</span></div>
+          </div>
+          <p>DeepSeek-R1 (modo Think) muestra el razonamiento paso a paso. Excepcional para algoritmos, matemáticas y optimización de código. Sin límites en el sitio web.</p>
+          <ul class="feature-list"><li>Modo "Think" con razonamiento visible</li><li>Gratis sin límite de mensajes</li><li>Modelos open-source (pesos públicos)</li></ul>
+          <div class="card-footer"><a href="https://chat.deepseek.com" target="_blank" rel="noopener" class="btn btn-primary">Abrir gratis →</a><span class="langs">Python · C · Java · SQL</span></div>
+        </article>
+
+        <article class="card" data-tags="python javascript dart flutter android google firebase cloud gemini chat">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=gemini.google.com" alt="Gemini" class="card-logo" />
+            <div><h3>Gemini</h3><span class="provider">Google DeepMind</span></div>
+          </div>
+          <p>Gemini 2.5 Flash gratis con búsqueda web en tiempo real. Ideal para consultar documentación actualizada, proyectos Firebase/GCP y ecosistema Google.</p>
+          <ul class="feature-list"><li>Búsqueda web integrada</li><li>Gemini 2.5 Flash sin coste</li><li>Perfecto para ecosistema Google</li></ul>
+          <div class="card-footer"><a href="https://gemini.google.com" target="_blank" rel="noopener" class="btn btn-primary">Abrir gratis →</a><span class="langs">Python · JS · Dart · Go</span></div>
+        </article>
+
+        <article class="card" data-tags="bash shell linux devops python script sin limite privacidad chat mistral">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mistral.ai" alt="Le Chat" class="card-logo" />
+            <div><h3>Le Chat</h3><span class="provider">Mistral AI</span></div>
+          </div>
+          <p>Sin límite de mensajes por ahora. Potente para Bash, DevOps y Python. Privacidad europea (GDPR) — buena opción si te preocupa dónde se procesan tus datos.</p>
+          <ul class="feature-list"><li>Sin límite de mensajes visible</li><li>Búsqueda web + imágenes</li><li>Privacidad GDPR europea</li></ul>
+          <div class="card-footer"><a href="https://chat.mistral.ai" target="_blank" rel="noopener" class="btn btn-primary">Abrir gratis →</a><span class="langs">Python · JS · Bash · SQL</span></div>
+        </article>
+
+        <article class="card" data-tags="python javascript llama meta gratis sin cuenta chat">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=meta.ai" alt="Meta AI" class="card-logo" />
+            <div><h3>Meta AI</h3><span class="provider">Meta · Llama 3.1</span></div>
+          </div>
+          <p>Llama 3.1 405B completamente gratis. Fuerte en razonamiento lógico y depuración de algoritmos. Integrado en WhatsApp e Instagram — disponible desde el móvil.</p>
+          <ul class="feature-list"><li>Llama 3.1 405B gratis</li><li>Disponible en WhatsApp</li><li>Sin cuenta requerida (ciertos países)</li></ul>
+          <div class="card-footer"><a href="https://www.meta.ai" target="_blank" rel="noopener" class="btn btn-primary">Abrir gratis →</a><span class="langs">Python · C++ · JS · Rust</span></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- COPILOTO IDE -->
+    <section class="category-section" data-category="copilot">
+      <h2 class="category-title"><span class="cat-icon">🛠️</span> Copiloto IDE <span class="cat-desc">Asistentes dentro de tu editor de código</span></h2>
+      <div class="cards-row">
+
+        <article class="card top-pick" data-tags="vscode editor ide react typescript javascript python rust go fullstack copilot cursor">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=cursor.com" alt="Cursor" class="card-logo" />
+            <div><h3>Cursor <span class="badge badge-top">Top Pick</span></h3><span class="provider">Anysphere</span></div>
+          </div>
+          <p>Editor basado en VS Code con IA en cada capa: chat, edición inline y agente multi-archivo. Plan hobby gratis con 2 000 sugerencias/mes incluyendo Claude y GPT-4o.</p>
+          <ul class="feature-list"><li>Claude 3.5 + GPT-4o en el plan free</li><li>Edición multi-archivo con contexto del repo</li><li>Modo Composer para cambios grandes</li></ul>
+          <div class="card-footer"><a href="https://cursor.com" target="_blank" rel="noopener" class="btn btn-primary">Descargar gratis →</a><span class="langs">Todos los lenguajes</span></div>
+        </article>
+
+        <article class="card" data-tags="vscode jetbrains plugin extensión autocompletado ilimitado codeium windsurf copilot ide">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=codeium.com" alt="Codeium" class="card-logo" />
+            <div><h3>Codeium / Windsurf</h3><span class="provider">Codeium</span></div>
+          </div>
+          <p>Autocompletado ilimitado para uso personal — sin restricciones mensuales. Windsurf IDE incluye agente "Cascade" para refactorizaciones en múltiples archivos.</p>
+          <ul class="feature-list"><li>Autocompletado ilimitado en free tier</li><li>70+ lenguajes y 40+ IDEs</li><li>Agente Cascade incluido</li></ul>
+          <div class="card-footer"><a href="https://codeium.com" target="_blank" rel="noopener" class="btn btn-primary">Descargar gratis →</a><span class="langs">70+ lenguajes</span></div>
+        </article>
+
+        <article class="card" data-tags="github vscode visual studio code copilot jetbrains plugin ide">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com" alt="GitHub Copilot" class="card-logo" />
+            <div><h3>GitHub Copilot Free</h3><span class="provider">GitHub · Microsoft</span></div>
+          </div>
+          <p>Desde 2025 tiene capa gratuita permanente: 2 000 completados + 50 chats por mes en VS Code y JetBrains. Elige entre GPT-4o y Claude 3.5 como modelo base.</p>
+          <ul class="feature-list"><li>2 000 completados + 50 chats/mes</li><li>VS Code, JetBrains, Neovim</li><li>Elige GPT-4o o Claude 3.5</li></ul>
+          <div class="card-footer"><a href="https://github.com/features/copilot" target="_blank" rel="noopener" class="btn btn-primary">Activar gratis →</a><span class="langs">Python · JS · TS · Java · C#</span></div>
+        </article>
+
+        <article class="card" data-tags="privacidad local python javascript java ruby plugin vscode tabnine copilot">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tabnine.com" alt="Tabnine" class="card-logo" />
+            <div><h3>Tabnine Free</h3><span class="provider">Tabnine</span></div>
+          </div>
+          <p>Plan gratuito permanente con completados de línea. Puede correr localmente sin enviar código a la nube — la opción más privada entre los copilotos de IDE.</p>
+          <ul class="feature-list"><li>Completados de línea gratis siempre</li><li>Modo local (código no sale de tu máquina)</li><li>VS Code, JetBrains, Vim, Emacs</li></ul>
+          <div class="card-footer"><a href="https://tabnine.com" target="_blank" rel="noopener" class="btn btn-primary">Instalar gratis →</a><span class="langs">Python · JS · Java · Ruby</span></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- API GRATUITA -->
+    <section class="category-section" data-category="autocomplete">
+      <h2 class="category-title"><span class="cat-icon">⚡</span> API Gratuita <span class="cat-desc">Acceso programático para integrar IA en tus propias apps</span></h2>
+      <div class="cards-row">
+
+        <article class="card" data-tags="api groq llama python javascript node rest endpoint rapido low latency chatbot bot backend">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=groq.com" alt="Groq" class="card-logo" />
+            <div><h3>Groq API Free</h3><span class="provider">Groq</span></div>
+          </div>
+          <p>API gratuita con 500 req/día para Llama 3, Mixtral y Gemma. Velocidad excepcional (~750 tok/s) gracias al hardware LPU. Compatible al 100% con la SDK de OpenAI.</p>
+          <ul class="feature-list"><li>500 req/día gratis con cuenta</li><li>Ultra-rápido (LPU hardware)</li><li>Drop-in replacement de OpenAI SDK</li></ul>
+          <div class="card-footer"><a href="https://console.groq.com" target="_blank" rel="noopener" class="btn btn-primary">Obtener API key →</a><span class="langs">Python · JS · REST</span></div>
+        </article>
+
+        <article class="card" data-tags="api gemini google python node java go multimodal imagen dart flutter 1500 requests">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=aistudio.google.com" alt="AI Studio" class="card-logo" />
+            <div><h3>Google AI Studio</h3><span class="provider">Google</span></div>
+          </div>
+          <p>API de Gemini con 1 500 req/día gratuitas en el tier de desarrollo. Soporte multimodal (texto, imagen, video, audio). La entrada más rápida para proyectos con IA generativa.</p>
+          <ul class="feature-list"><li>1 500 req/día en tier gratuito</li><li>Gemini 2.5 Flash disponible</li><li>SDKs para Python, Node, Go, Java</li></ul>
+          <div class="card-footer"><a href="https://aistudio.google.com" target="_blank" rel="noopener" class="btn btn-primary">Obtener API key →</a><span class="langs">Python · Node · Go · Java · REST</span></div>
+        </article>
+
+        <article class="card" data-tags="api python machine learning ml open source huggingface transformers starcoder codellama modelo especializado fine-tuning">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=huggingface.co" alt="HuggingFace" class="card-logo" />
+            <div><h3>HuggingFace Inference</h3><span class="provider">Hugging Face</span></div>
+          </div>
+          <p>Miles de modelos open-source especializados en código (StarCoder, CodeLlama, DeepSeek) disponibles vía API gratuita. Ideal para investigación y modelos a medida.</p>
+          <ul class="feature-list"><li>API serverless gratuita (modelos públicos)</li><li>Spaces gratuitos para deployar apps</li><li>CodeLlama 70B y StarCoder2 disponibles</li></ul>
+          <div class="card-footer"><a href="https://huggingface.co/inference-api" target="_blank" rel="noopener" class="btn btn-primary">Explorar →</a><span class="langs">Python · REST · Todos</span></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- REVISIÓN / DEBUG -->
+    <section class="category-section" data-category="review">
+      <h2 class="category-title"><span class="cat-icon">🔍</span> Revisión & Debug <span class="cat-desc">Detecta bugs, vulnerabilidades y mejora la calidad</span></h2>
+      <div class="cards-row">
+
+        <article class="card" data-tags="pull request pr code review revisión github gitlab open source equipo colaboración">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=coderabbit.ai" alt="CodeRabbit" class="card-logo" />
+            <div><h3>CodeRabbit</h3><span class="provider">CodeRabbit AI</span></div>
+          </div>
+          <p>Revisa tus Pull Requests automáticamente: detecta bugs, sugiere refactors y genera resúmenes del cambio con comentarios inline en GitHub/GitLab. Gratis para repos públicos.</p>
+          <ul class="feature-list"><li>Revisión automática en cada PR</li><li>Comentarios inline en GitHub/GitLab</li><li>Gratis para repos open-source</li></ul>
+          <div class="card-footer"><a href="https://coderabbit.ai" target="_blank" rel="noopener" class="btn btn-primary">Conectar repo →</a><span class="langs">Python · JS · Java · Go · Ruby</span></div>
+        </article>
+
+        <article class="card" data-tags="python refactorización code smell calidad pycharm vscode plugin revisión sourcery">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=sourcery.ai" alt="Sourcery" class="card-logo" />
+            <div><h3>Sourcery</h3><span class="provider">Sourcery AI</span></div>
+          </div>
+          <p>Especializado en Python: detecta code smells y propone refactorizaciones automáticas explicando el porqué de cada cambio. Plugin para VS Code y PyCharm.</p>
+          <ul class="feature-list"><li>Refactorización automática Python</li><li>Plugin VS Code y PyCharm</li><li>Integración GitHub Actions</li></ul>
+          <div class="card-footer"><a href="https://sourcery.ai" target="_blank" rel="noopener" class="btn btn-primary">Instalar gratis →</a><span class="langs">Python · JS</span></div>
+        </article>
+
+        <article class="card" data-tags="seguridad vulnerabilidad owasp xss sql injection sast javascript typescript python java go snyk audit producción">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=snyk.io" alt="Snyk" class="card-logo" />
+            <div><h3>Snyk Code</h3><span class="provider">Snyk</span></div>
+          </div>
+          <p>Análisis estático de seguridad asistido por IA en tiempo real. Detecta vulnerabilidades OWASP mientras escribes código. Gratis para desarrolladores individuales.</p>
+          <ul class="feature-list"><li>SAST con IA en el IDE</li><li>Gratis para desarrolladores individuales</li><li>GitHub/GitLab/Bitbucket integrado</li></ul>
+          <div class="card-footer"><a href="https://snyk.io" target="_blank" rel="noopener" class="btn btn-primary">Activar gratis →</a><span class="langs">JS · TS · Python · Java · Go</span></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- AGENTES AUTÓNOMOS -->
+    <section class="category-section" data-category="agent">
+      <h2 class="category-title"><span class="cat-icon">🤖</span> Agentes Autónomos <span class="cat-desc">IAs que ejecutan tareas de programación de forma autónoma</span></h2>
+      <div class="cards-row">
+
+        <article class="card top-pick" data-tags="agente autónomo terminal cli repositorio repo git commit tests migración refactorización masiva claude code">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=claude.ai" alt="Claude Code" class="card-logo" />
+            <div><h3>Claude Code <span class="badge badge-top">Top Pick</span></h3><span class="provider">Anthropic</span></div>
+          </div>
+          <p>CLI oficial de Anthropic: lee tu repositorio, edita archivos, corre tests y hace commits automáticamente desde la terminal. Gratis con cuenta Claude.ai.</p>
+          <ul class="feature-list"><li>Agente de terminal completamente autónomo</li><li>Lee y modifica el repo completo</li><li>Gratis con plan Claude.ai</li></ul>
+          <div class="card-footer"><a href="https://claude.ai/code" target="_blank" rel="noopener" class="btn btn-primary">Instalar →</a><span class="langs">Cualquier lenguaje / proyecto</span></div>
+        </article>
+
+        <article class="card" data-tags="agente openai codex cli sandbox python javascript open source bash git terminal">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=openai.com" alt="Codex CLI" class="card-logo" />
+            <div><h3>Codex CLI</h3><span class="provider">OpenAI · Open Source</span></div>
+          </div>
+          <p>CLI open-source de OpenAI que ejecuta tareas de código en un sandbox seguro con rollback automático. Modo aprobación manual de cada paso para mayor control.</p>
+          <ul class="feature-list"><li>Open-source (MIT)</li><li>Sandbox con rollback automático</li><li>Requiere API key OpenAI (tier gratis)</li></ul>
+          <div class="card-footer"><a href="https://github.com/openai/codex" target="_blank" rel="noopener" class="btn btn-primary">Ver en GitHub →</a><span class="langs">Cualquier lenguaje</span></div>
+        </article>
+
+        <article class="card" data-tags="agente local privacidad privado offline open source ollama git commit python javascript aider">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=aider.chat" alt="Aider" class="card-logo" />
+            <div><h3>Aider</h3><span class="provider">Paul Gauthier · Open Source</span></div>
+          </div>
+          <p>Agente de terminal open-source con soporte de modelos locales (Ollama). Tu código nunca sale de tu máquina. Hace commits automáticos con git y entiende el contexto del repo.</p>
+          <ul class="feature-list"><li>100% open-source (Apache 2.0)</li><li>Modelos locales con Ollama</li><li>Git-aware: commits automáticos</li></ul>
+          <div class="card-footer"><a href="https://aider.chat" target="_blank" rel="noopener" class="btn btn-primary">Instalar →</a><span class="langs">Python · JS · Rust · Go</span></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- APRENDIZAJE -->
+    <section class="category-section" data-category="learn">
+      <h2 class="category-title"><span class="cat-icon">📚</span> Aprendizaje Interactivo <span class="cat-desc">Aprende a programar con tutores de IA</span></h2>
+      <div class="cards-row">
+
+        <article class="card" data-tags="aprender principiante básico desde cero javascript html css python sql curso tutorial khanmigo">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=khanacademy.org" alt="Khanmigo" class="card-logo" />
+            <div><h3>Khanmigo</h3><span class="provider">Khan Academy</span></div>
+          </div>
+          <p>Tutor socrático gratuito de Khan Academy: nunca da la respuesta directa, te enseña a llegar solo. Ideal para aprender JS, Python, HTML y SQL desde cero.</p>
+          <ul class="feature-list"><li>Completamente gratuito para estudiantes</li><li>Pedagogía socrática</li><li>Cursos de JS, HTML, CSS, Python, SQL</li></ul>
+          <div class="card-footer"><a href="https://www.khanacademy.org/computing" target="_blank" rel="noopener" class="btn btn-primary">Aprender gratis →</a><span class="langs">JS · HTML · CSS · Python · SQL</span></div>
+        </article>
+
+        <article class="card" data-tags="online navegador sin instalar nube compartir demo prototipo replit python javascript java c++">
+          <div class="card-header">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=replit.com" alt="Replit" class="card-logo" />
+            <div><h3>Replit AI</h3><span class="provider">Replit</span></div>
+          </div>
+          <p>IDE online con IA integrada: programa, ejecuta y comparte sin instalar nada. El plan gratuito incluye asistente IA y entorno de ejecución completo en el navegador.</p>
+          <ul class="feature-list"><li>Entorno completo en el navegador</li><li>Asistente IA incluido en plan free</li><li>50+ lenguajes</li></ul>
+          <div class="card-footer"><a href="https://replit.com" target="_blank" rel="noopener" class="btn btn-primary">Abrir online →</a><span class="langs">Python · JS · Java · C++ · 50+ más</span></div>
+        </article>
+
+      </div>
+    </section>
+
+    <div class="no-results hidden" id="noResults">
+      <p>No hay resultados para "<span id="noResultsTerm"></span>".</p>
+      <p>Prueba con <em>python</em>, <em>vscode</em> o <em>api</em>.</p>
+    </div>
+
+  </main>
+
+  <!-- COMPARISON TABLE -->
+  <section class="compare-section container">
+    <h2>Tabla comparativa rápida</h2>
+    <div class="table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Herramienta</th><th>Tipo</th><th>Gratis siempre</th><th>Sin registro</th><th>Local</th><th>Mejor para…</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Claude</strong></td><td>Chat</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td>Contextos largos, refactor</td></tr>
+          <tr><td><strong>ChatGPT</strong></td><td>Chat</td><td class="yes">✓ limitado</td><td class="no">✗</td><td class="no">✗</td><td>Prototipar, aprender</td></tr>
+          <tr><td><strong>DeepSeek</strong></td><td>Chat</td><td class="yes">✓ sin límite</td><td class="no">✗</td><td class="no">✗</td><td>Algoritmos, matemáticas</td></tr>
+          <tr><td><strong>Cursor</strong></td><td>IDE</td><td class="yes">✓ 2 000/mes</td><td class="no">✗</td><td class="no">✗</td><td>Desarrollo día a día</td></tr>
+          <tr><td><strong>Codeium</strong></td><td>Plugin IDE</td><td class="yes">✓ ilimitado</td><td class="no">✗</td><td class="no">✗</td><td>Autocompletado sin límites</td></tr>
+          <tr><td><strong>Aider</strong></td><td>Agente CLI</td><td class="yes">✓ open source</td><td class="yes">✓</td><td class="yes">✓</td><td>Privacidad, proyectos locales</td></tr>
+          <tr><td><strong>Groq API</strong></td><td>API</td><td class="yes">✓ 500/día</td><td class="no">✗</td><td class="no">✗</td><td>Apps propias, tiempo real</td></tr>
+          <tr><td><strong>HuggingFace</strong></td><td>API / Hub</td><td class="yes">✓ serverless</td><td class="no">✗</td><td class="yes">✓</td><td>Modelos especializados, ML</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>CodeAI Hub — Directorio gratuito sin afiliación comercial · Actualizado Jun 2026</p>
+      <p class="footer-note">Los límites gratuitos pueden cambiar. Verifica siempre la página oficial de cada herramienta.</p>
+    </div>
+  </footer>
+
+  <script src="recommender.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
